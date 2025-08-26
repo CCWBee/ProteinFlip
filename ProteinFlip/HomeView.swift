@@ -75,25 +75,34 @@ struct HomeView: View {
         }
     }
 
+    @ViewBuilder
     private var progressRing: some View {
-        let p = min(Double(store.todayGrams) / Double(max(store.goalGrams, 1)), 1.0)
-        let colour: Color = p >= 1 ? .green : (p >= 0.6 ? .orange : .red)
-        return ZStack {
-            Circle().stroke(Color.secondary.opacity(0.2), lineWidth: 12)
-            Circle()
-                .trim(from: 0, to: p)
-                .stroke(colour, style: StrokeStyle(lineWidth: 12, lineCap: .round))
-                .rotationEffect(.degrees(-90))
-            VStack {
-                Text("\(store.todayGrams) / \(store.goalGrams) g").font(.headline)
-                Text(p >= 1 ? "Goal hit" : "Keep going")
-                    .font(.footnote).foregroundStyle(.secondary)
+        if store.goalGrams > 0 {
+            let p = min(Double(store.todayGrams) / Double(store.goalGrams), 1.0)
+            let colour: Color = p >= 1 ? .green : (p >= 0.6 ? .orange : .red)
+            ZStack {
+                Circle().stroke(Color.secondary.opacity(0.2), lineWidth: 12)
+                Circle()
+                    .trim(from: 0, to: p)
+                    .stroke(colour, style: StrokeStyle(lineWidth: 12, lineCap: .round))
+                    .rotationEffect(.degrees(-90))
+                VStack {
+                    Text("\(store.todayGrams) / \(store.goalGrams) g").font(.headline)
+                    Text(p >= 1 ? "Goal hit" : "Keep going")
+                        .font(.footnote).foregroundStyle(.secondary)
+                }
             }
+            .frame(width: 180, height: 180)
+            .padding(.bottom, 6)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text("Progress \(Int(p*100)) percent"))
+        } else {
+            Text("Set a goal to see your progress")
+                .font(.headline)
+                .foregroundStyle(.secondary)
+                .frame(width: 180, height: 180)
+                .padding(.bottom, 6)
         }
-        .frame(width: 180, height: 180)
-        .padding(.bottom, 6)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("Progress \(Int(p*100)) percent"))
     }
 
     private var quickAdds: some View {
