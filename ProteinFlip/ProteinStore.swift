@@ -1,161 +1,73 @@
-import SwiftUI
+import Foundation
+import Combine
 
-struct HomeView: View {
-    @EnvironmentObject var store: ProteinStore
-    @State private var addAmount: Double = 25
-    @State private var animating = false
-    @State private var displayValue: Int = 0
-    @State private var showHistory = false
-    @State private var showGoals = false
+final class ProteinStore: ObservableObject {
+    @Published var todayGrams: Int
+    @Published var goalGrams: Int {
+        didSet { defaults.set(goalGrams, forKey: Self.goalKey) }
+    }
 
-    var body: some View {
-        NavigationStack {
-            VStack(spacing: 28) {
-                Spacer(minLength: 12)
+    private var daily: [String: Int]
+    private let defaults = UserDefaults.standard
 
-                SplitFlapCounter(value: displayValue, fontSize: 72)
+    private static let logKey = "protein.daily"
+    private static let goalKey = "protein.goal"
 
-                progressRing
+    static let isoFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.calendar = Calendar(identifier: .iso8601)
+        f.timeZone = TimeZone(secondsFromGMT: 0)
+        f.dateFormat = "yyyy-MM-dd"
+        return f
+    }()
 
-                VStack(spacing: 16) {
-                    Text("+\(Int(addAmount)) g")
-                        .font(.system(.title2, design: .rounded)).bold()
+    init() {
+        goalGrams = defaults.integer(forKey: Self.goalKey)
+        daily = defaults.dictionary(forKey: Self.logKey) as? [String: Int] ?? [:]
+        let todayIso = Self.isoFormatter.string(from: Date())
+        todayGrams = daily[todayIso] ?? 0
+    }
 
-                    Slider(value: $addAmount, in: 1...150, step: 1)
-                        .tint(.blue)
-                        .padding(.horizontal)
+    func add(grams: Int) {
+        handleRolloverIfNeeded()
+        let todayIso = Self.isoFormatter.string(from: Date())
+        todayGrams += grams
+        daily[todayIso] = todayGrams
+        defaults.set(daily, forKey: Self.logKey)
+    }
 
-                    quickAdds
+    func set(for date: Date, grams: Int) {
+        let iso = Self.isoFormatter.string(from: date)
+        daily[iso] = grams
+        if Calendar.current.isDateInToday(date) {
+            todayGrams = grams
+        }
+        defaults.set(daily, forKey: Self.logKey)
+    }
 
-                    Button(action: addTapped) {
-                        Text("Add")
-                            .font(.title3.weight(.semibold))
-                            .padding(.vertical, 14)
-                            .frame(maxWidth: .infinity)
-                            .background(.blue, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-                            .foregroundStyle(.white)
-                    }
-                    .padding(.horizontal)
-                    .disabled(animating)
-                }
-
-                Spacer()
-
-                Text("Goal \(store.goalGrams) g • Today \(store.todayGrams) g")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-
-                Spacer(minLength: 12)
-            }
-            .padding(.top, 24)
-            .navigationTitle("Protein")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Menu {
-                        Button { /* already home */ } label: {
-                            Label("Home", systemImage: "house")
-                        }
-                        Button { showHistory = true } label: {
-                            Label("History", systemImage: "calendar")
-                        }
-                        Button { showGoals = true } label: {
-                            Label("Goals", systemImage: "target")
-                        }
-                    } label: {
-                        Image(systemName: "line.3.horizontal")
-                    }
-                }
-            }
-            .sheet(isPresented: $showHistory) { HistoryView() }
-            .sheet(isPresented: $showGoals) { GoalsView() }
-            .onAppear {
-                displayValue = store.todayGrams
-                Haptics.prepare()
-            }
+    func monthData(for date: Date) -> [(date: Date, iso: String, grams: Int)] {
+        var comps = Calendar.current.dateComponents([.year, .month], from: date)
+        comps.day = 1
+        guard let start = Calendar.current.date(from: comps),
+              let range = Calendar.current.range(of: .day, in: .month, for: start) else { return [] }
+        return range.compactMap { day -> (Date, String, Int)? in
+            comps.day = day
+            guard let d = Calendar.current.date(from: comps) else { return nil }
+            let iso = Self.isoFormatter.string(from: d)
+            let grams = daily[iso] ?? 0
+            return (d, iso, grams)
         }
     }
 
-    private var progressRing: some View {
-        let p = min(Double(store.todayGrams) / Double(max(store.goalGrams, 1)), 1.0)
-        let colour: Color = p >= 1 ? .green : (p >= 0.6 ? .orange : .red)
-        return ZStack {
-            Circle().stroke(Color.secondary.opacity(0.2), lineWidth: 12)
-            Circle()
-                .trim(from: 0, to: p)
-                .stroke(colour, style: StrokeStyle(lineWidth: 12, lineCap: .round))
-                .rotationEffect(.degrees(-90))
-            VStack {
-                Text("\(store.todayGrams) / \(store.goalGrams) g").font(.headline)
-                Text(p >= 1 ? "Goal hit" : "Keep going")
-                    .font(.footnote).foregroundStyle(.secondary)
-            }
+    func handleRolloverIfNeeded() {
+        let todayIso = Self.isoFormatter.string(from: Date())
+        if let stored = daily[todayIso] {
+            todayGrams = stored
+        } else {
+            todayGrams = 0
+            daily[todayIso] = 0
+            defaults.set(daily, forKey: Self.logKey)
         }
-        .frame(width: 180, height: 180)
-        .padding(.bottom, 6)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("Progress \(Int(p*100)) percent"))
-    }
-
-    private var quickAdds: some View {
-        HStack(spacing: 8) {
-            ForEach([20, 30, 40], id: \.self) { v in
-                Button("+\(v) g") { addQuick(v) }
-                    .buttonStyle(.bordered)
-            }
-            Button("Undo") { undoLast() }
-                .buttonStyle(.borderedProminent)
-                .tint(.gray)
-        }
-        .padding(.horizontal)
-    }
-
-    private func addQuick(_ v: Int) {
-        addAmount = Double(v)
-        addTapped()
-    }
-
-    private func undoLast() {
-        let newVal = max(0, store.todayGrams - Int(addAmount))
-        store.set(for: Date(), grams: newVal)
-        animateTo(newVal)
-        Haptics.warning()
-    }
-
-    private func addTapped() {
-        guard !animating else { return }
-        Haptics.tap()
-        let inc = Int(addAmount)
-        let start = store.todayGrams
-        let target = start + inc
-        store.add(grams: inc)
-        animateTo(target)
-        if target >= store.goalGrams, start < store.goalGrams {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { Haptics.success() }
-        }
-    }
-
-    private func animateTo(_ target: Int) {
-        animating = true
-        let start = displayValue
-        let delta = target - start
-        guard delta != 0 else { animating = false; return }
-        let steps = min(abs(delta), 30)
-        let stepVal = max(1, abs(delta) / max(steps, 1)) * (delta > 0 ? 1 : -1)
-        var current = start
-        func tick() {
-            if (stepVal > 0 && current >= target) || (stepVal < 0 && current <= target) {
-                current = target
-                withAnimation(.easeOut(duration: 0.15)) { displayValue = current }
-                animating = false
-                return
-            }
-            current += stepVal
-            withAnimation(.interactiveSpring(response: 0.2, dampingFraction: 0.8)) {
-                displayValue = current
-            }
-            Haptics.tickSmall()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.04) { tick() }
-        }
-        tick()
     }
 }
+
