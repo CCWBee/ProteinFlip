@@ -7,6 +7,7 @@ struct HomeView: View {
     @State private var displayValue: Int = 0
     @State private var showHistory = false
     @State private var showGoals = false
+    @State private var lastAddition: Int?
 
     var body: some View {
         NavigationStack {
@@ -110,14 +111,17 @@ struct HomeView: View {
     }
 
     private func addQuick(_ v: Int) {
+        lastAddition = v
         addAmount = Double(v)
         addTapped()
     }
 
     private func undoLast() {
-        let newVal = max(0, store.todayGrams - Int(addAmount))
+        guard let last = lastAddition else { return }
+        let newVal = max(0, store.todayGrams - last)
         store.set(for: Date(), grams: newVal)
         animateTo(newVal)
+        lastAddition = nil
         Haptics.warning()
     }
 
@@ -128,6 +132,7 @@ struct HomeView: View {
         let start = store.todayGrams
         let target = start + inc
         store.add(grams: inc)
+        lastAddition = inc
         animateTo(target)
         if target >= store.goalGrams, start < store.goalGrams {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { Haptics.success() }
