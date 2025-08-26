@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct GoalsView: View {
-    @EnvironmentObject var store: ProteinStore
+    @EnvironmentObject var proteinStore: ProteinStore
     @Environment(\.dismiss) private var dismiss
 
     @State private var goal: Double = 130
@@ -21,7 +21,7 @@ struct GoalsView: View {
                         Text("\(Int(goal)) g")
                     }
                     Button("Save") {
-                        store.goalGrams = Int(goal)
+                        proteinStore.goalGrams = Int(goal)
                         dismiss()
                     }
                 }
@@ -43,7 +43,7 @@ struct GoalsView: View {
                         let kg = unit == .kg ? w : w * 0.45359237
                         let g = Int((kg * 1.7).rounded())
                         goal = Double(g)
-                        store.goalGrams = g
+                        proteinStore.goalGrams = g
                         Haptics.success()
                     }
                 }
@@ -60,7 +60,7 @@ struct GoalsView: View {
                     Button("Close") { dismiss() }
                 }
             }
-            .onAppear { goal = Double(store.goalGrams) }
+            .onAppear { goal = Double(proteinStore.goalGrams) }
         }
     }
 }

@@ -2,7 +2,7 @@ import SwiftUI
 import UIKit
 
 struct HistoryView: View {
-    @EnvironmentObject var store: ProteinStore
+    @EnvironmentObject var proteinStore: ProteinStore
     @Environment(\.dismiss) private var dismiss
     @State private var month: Date = Date()
 
@@ -17,7 +17,7 @@ struct HistoryView: View {
             .padding()
             .navigationTitle("History")
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Close") { dismiss() }
                 }
             }
@@ -54,7 +54,7 @@ struct HistoryView: View {
         let cal = Calendar.current
         let startOfMonth = cal.date(from: cal.dateComponents([.year, .month], from: month))!
         let firstWeekday = (cal.component(.weekday, from: startOfMonth) + 5) % 7 // Monday index 0
-        let days = store.monthData(for: month)
+        let days = proteinStore.monthData(for: month)
         let blanks = Array(repeating: "", count: firstWeekday)
 
         let cells: [AnyView] =
@@ -87,8 +87,8 @@ struct HistoryView: View {
     }
 
     private func goalStatus(grams: Int) -> (colour: Color, text: String) {
-        if grams >= store.goalGrams { return (.green, "Goal hit") }
-        if grams >= Int(Double(store.goalGrams) * 0.6) { return (.orange, "Nearly there") }
+        if grams >= proteinStore.goalGrams { return (.green, "Goal hit") }
+        if grams >= Int(Double(proteinStore.goalGrams) * 0.6) { return (.orange, "Nearly there") }
         return (.red, "Low")
     }
 
@@ -103,7 +103,7 @@ struct HistoryView: View {
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { _ in
             if let t = alert.textFields?.first?.text, let g = Int(t) {
                 newVal = max(0, g)
-                store.set(for: date, grams: newVal)
+                proteinStore.set(for: date, grams: newVal)
             }
         }))
         UIApplication.shared.topMost?.present(alert, animated: true)
