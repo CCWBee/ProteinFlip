@@ -43,7 +43,8 @@
 		DA4CA82D2E5E5C9D00095618 /* FlipDigit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipDigit.swift; sourceTree = "<group>"; };
 		DA4CA82F2E5E5CBA00095618 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DA4CA8312E5E5CEA00095618 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
-		DA4CA8332E5E5D0200095618 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
+                DA4CA8332E5E5D0200095618 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
+                DA4CA8362E5E5D2B00095618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,20 +90,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DA4CA7F62E5E5AAC00095618 /* ProteinFlip */ = {
-			isa = PBXGroup;
-			children = (
-				DA4CA8272E5E5BEC00095618 /* ProteinFlipApp.swift */,
-				DA4CA8292E5E5C5900095618 /* ProteinStore.swift */,
-				DA4CA82B2E5E5C8200095618 /* Haptics.swift */,
-				DA4CA82D2E5E5C9D00095618 /* FlipDigit.swift */,
-				DA4CA82F2E5E5CBA00095618 /* HomeView.swift */,
-				DA4CA8312E5E5CEA00095618 /* HistoryView.swift */,
-				DA4CA8332E5E5D0200095618 /* GoalsView.swift */,
-			);
-			path = ProteinFlip;
-			sourceTree = "<group>";
-		};
+                DA4CA7F62E5E5AAC00095618 /* ProteinFlip */ = {
+                        isa = PBXGroup;
+                        children = (
+                                DA4CA8272E5E5BEC00095618 /* ProteinFlipApp.swift */,
+                                DA4CA8292E5E5C5900095618 /* ProteinStore.swift */,
+                                DA4CA82B2E5E5C8200095618 /* Haptics.swift */,
+                                DA4CA82D2E5E5C9D00095618 /* FlipDigit.swift */,
+                                DA4CA82F2E5E5CBA00095618 /* HomeView.swift */,
+                                DA4CA8312E5E5CEA00095618 /* HistoryView.swift */,
+                                DA4CA8332E5E5D0200095618 /* GoalsView.swift */,
+                                DA4CA8362E5E5D2B00095618 /* Info.plist */,
+                        );
+                        path = ProteinFlip;
+                        sourceTree = "<group>";
+                };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -395,11 +397,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y3236QX6RL;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+                                GENERATE_INFOPLIST_FILE = NO;
+                                INFOPLIST_FILE = ProteinFlip/Info.plist;
+                                INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -425,11 +425,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y3236QX6RL;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+                                GENERATE_INFOPLIST_FILE = NO;
+                                INFOPLIST_FILE = ProteinFlip/Info.plist;
+                                INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
