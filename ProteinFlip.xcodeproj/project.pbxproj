@@ -15,6 +15,7 @@
                DA4CA8322E5E5CEA00095618 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CA8312E5E5CEA00095618 /* HistoryView.swift */; };
                DA4CA8342E5E5D0200095618 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CA8332E5E5D0200095618 /* GoalsView.swift */; };
                03F3CA5979F5DA9F6BE1A796 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B20C0EE97FF08746907A380 /* LaunchScreen.storyboard */; };
+               A0D9CD58748147F6942BE8C4 /* ProteinFlipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6928035D087D4C71A2AFE7FD /* ProteinFlipUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
                DA4CA8332E5E5D0200095618 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
                DA4CA8362E5E5D2B00095618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
                2B20C0EE97FF08746907A380 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+               6928035D087D4C71A2AFE7FD /* ProteinFlipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProteinFlipUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,14 +76,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DA4CA7EB2E5E5AAC00095618 = {
-			isa = PBXGroup;
-			children = (
-				DA4CA7F62E5E5AAC00095618 /* ProteinFlip */,
-				DA4CA7F52E5E5AAC00095618 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
+                DA4CA7EB2E5E5AAC00095618 = {
+                        isa = PBXGroup;
+                        children = (
+                                DA4CA7F62E5E5AAC00095618 /* ProteinFlip */,
+                               0A96BD0591C84DF8B38AEAE2 /* ProteinFlipUITests */,
+                                DA4CA7F52E5E5AAC00095618 /* Products */,
+                        );
+                        sourceTree = "<group>";
+                };
 		DA4CA7F52E5E5AAC00095618 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,11 +106,19 @@
                                DA4CA8312E5E5CEA00095618 /* HistoryView.swift */,
                                DA4CA8332E5E5D0200095618 /* GoalsView.swift */,
                                2B20C0EE97FF08746907A380 /* LaunchScreen.storyboard */,
-                               DA4CA8362E5E5D2B00095618 /* Info.plist */,
-                       );
-                       path = ProteinFlip;
+                                DA4CA8362E5E5D2B00095618 /* Info.plist */,
+                        );
+                        path = ProteinFlip;
                         sourceTree = "<group>";
                 };
+               0A96BD0591C84DF8B38AEAE2 /* ProteinFlipUITests */ = {
+                       isa = PBXGroup;
+                       children = (
+                               6928035D087D4C71A2AFE7FD /* ProteinFlipUITests.swift */,
+                       );
+                       path = ProteinFlipUITests;
+                       sourceTree = "<group>";
+               };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -255,13 +266,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA4CA8102E5E5AB000095618 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+                DA4CA8102E5E5AB000095618 /* Sources */ = {
+                        isa = PBXSourcesBuildPhase;
+                        buildActionMask = 2147483647;
+                        files = (
+                               A0D9CD58748147F6942BE8C4 /* ProteinFlipUITests.swift in Sources */,
+                        );
+                        runOnlyForDeploymentPostprocessing = 0;
+                };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
