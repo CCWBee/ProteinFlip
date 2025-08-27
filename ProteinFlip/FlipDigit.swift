@@ -20,6 +20,7 @@ struct SplitFlapDigit: View {
                         .foregroundStyle(.white)
                         .baselineOffset(2)
                         .frame(height: half)
+                        .clipped()
                 }
                 .frame(height: half)
                 .overlay(Rectangle().fill(Color.black.opacity(0.4)).frame(height: 1), alignment: .bottom)
@@ -31,6 +32,7 @@ struct SplitFlapDigit: View {
                         .foregroundStyle(.white.opacity(0.95))
                         .baselineOffset(-2)
                         .frame(height: half)
+                        .clipped()
                 }
                 .frame(height: half)
             }
