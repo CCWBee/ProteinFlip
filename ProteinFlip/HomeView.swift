@@ -14,7 +14,9 @@ struct HomeView: View {
             VStack(spacing: 28) {
                 Spacer(minLength: 12)
 
-                SplitFlapCounter(value: displayValue, fontSize: 72)
+                SplitFlapCounter(value: displayValue, fontSize: 80)
+                    .frame(width: 140)
+                    .frame(maxWidth: .infinity, alignment: .center)
 
                 progressRing
 
@@ -91,7 +93,8 @@ struct HomeView: View {
                     .font(.subheadline.bold())
                     .foregroundStyle(colour)
             }
-            .frame(width: 120, height: 120)
+            .frame(width: 140, height: 140)
+            .frame(maxWidth: .infinity, alignment: .center)
             .padding(.bottom, 4)
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(Text("Progress \(Int(p*100)) percent"))
@@ -99,11 +102,13 @@ struct HomeView: View {
             Text("Goal hit!")
                 .font(.headline)
                 .foregroundStyle(.green)
+                .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.bottom, 4)
         } else {
             Text("Set a goal to see progress")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
+                .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.bottom, 4)
         }
     }
