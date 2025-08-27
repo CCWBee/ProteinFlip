@@ -12,8 +12,9 @@
 		DA4CA82C2E5E5C8200095618 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CA82B2E5E5C8200095618 /* Haptics.swift */; };
 		DA4CA82E2E5E5C9D00095618 /* FlipDigit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CA82D2E5E5C9D00095618 /* FlipDigit.swift */; };
 		DA4CA8302E5E5CBA00095618 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CA82F2E5E5CBA00095618 /* HomeView.swift */; };
-		DA4CA8322E5E5CEA00095618 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CA8312E5E5CEA00095618 /* HistoryView.swift */; };
-		DA4CA8342E5E5D0200095618 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CA8332E5E5D0200095618 /* GoalsView.swift */; };
+               DA4CA8322E5E5CEA00095618 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CA8312E5E5CEA00095618 /* HistoryView.swift */; };
+               DA4CA8342E5E5D0200095618 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CA8332E5E5D0200095618 /* GoalsView.swift */; };
+               03F3CA5979F5DA9F6BE1A796 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B20C0EE97FF08746907A380 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +44,9 @@
 		DA4CA82D2E5E5C9D00095618 /* FlipDigit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipDigit.swift; sourceTree = "<group>"; };
 		DA4CA82F2E5E5CBA00095618 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DA4CA8312E5E5CEA00095618 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
-                DA4CA8332E5E5D0200095618 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
-                DA4CA8362E5E5D2B00095618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+               DA4CA8332E5E5D0200095618 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
+               DA4CA8362E5E5D2B00095618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+               2B20C0EE97FF08746907A380 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +100,12 @@
                                 DA4CA82B2E5E5C8200095618 /* Haptics.swift */,
                                 DA4CA82D2E5E5C9D00095618 /* FlipDigit.swift */,
                                 DA4CA82F2E5E5CBA00095618 /* HomeView.swift */,
-                                DA4CA8312E5E5CEA00095618 /* HistoryView.swift */,
-                                DA4CA8332E5E5D0200095618 /* GoalsView.swift */,
-                                DA4CA8362E5E5D2B00095618 /* Info.plist */,
-                        );
-                        path = ProteinFlip;
+                               DA4CA8312E5E5CEA00095618 /* HistoryView.swift */,
+                               DA4CA8332E5E5D0200095618 /* GoalsView.swift */,
+                               2B20C0EE97FF08746907A380 /* LaunchScreen.storyboard */,
+                               DA4CA8362E5E5D2B00095618 /* Info.plist */,
+                       );
+                       path = ProteinFlip;
                         sourceTree = "<group>";
                 };
 /* End PBXGroup section */
@@ -206,13 +209,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		DA4CA7F22E5E5AAC00095618 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+               DA4CA7F22E5E5AAC00095618 /* Resources */ = {
+                       isa = PBXResourcesBuildPhase;
+                       buildActionMask = 2147483647;
+                       files = (
+                               03F3CA5979F5DA9F6BE1A796 /* LaunchScreen.storyboard in Resources */,
+                       );
+                       runOnlyForDeploymentPostprocessing = 0;
+               };
 		DA4CA8082E5E5AB000095618 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
