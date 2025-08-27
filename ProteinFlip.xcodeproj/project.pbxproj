@@ -13,7 +13,8 @@
 		DA4CA82E2E5E5C9D00095618 /* FlipDigit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CA82D2E5E5C9D00095618 /* FlipDigit.swift */; };
 		DA4CA8302E5E5CBA00095618 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CA82F2E5E5CBA00095618 /* HomeView.swift */; };
 		DA4CA8322E5E5CEA00095618 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CA8312E5E5CEA00095618 /* HistoryView.swift */; };
-		DA4CA8342E5E5D0200095618 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CA8332E5E5D0200095618 /* GoalsView.swift */; };
+DA4CA8342E5E5D0200095618 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CA8332E5E5D0200095618 /* GoalsView.swift */; };
+               7563C0D89EB64A259F334B40 /* ProteinFlipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6D19CEB30E4F8F80AF286B /* ProteinFlipUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +45,8 @@
 		DA4CA82F2E5E5CBA00095618 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DA4CA8312E5E5CEA00095618 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
                 DA4CA8332E5E5D0200095618 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
-                DA4CA8362E5E5D2B00095618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+DA4CA8362E5E5D2B00095618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+               4D6D19CEB30E4F8F80AF286B /* ProteinFlipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProteinFlipUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,14 +74,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DA4CA7EB2E5E5AAC00095618 = {
-			isa = PBXGroup;
-			children = (
-				DA4CA7F62E5E5AAC00095618 /* ProteinFlip */,
-				DA4CA7F52E5E5AAC00095618 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
+               DA4CA7EB2E5E5AAC00095618 = {
+                       isa = PBXGroup;
+                       children = (
+                               DA4CA7F62E5E5AAC00095618 /* ProteinFlip */,
+                               7D7170F94D6648B9848EFF39 /* ProteinFlipUITests */,
+                               DA4CA7F52E5E5AAC00095618 /* Products */,
+                       );
+                       sourceTree = "<group>";
+               };
 		DA4CA7F52E5E5AAC00095618 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,21 +93,29 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-                DA4CA7F62E5E5AAC00095618 /* ProteinFlip */ = {
-                        isa = PBXGroup;
-                        children = (
-                                DA4CA8272E5E5BEC00095618 /* ProteinFlipApp.swift */,
-                                DA4CA8292E5E5C5900095618 /* ProteinStore.swift */,
-                                DA4CA82B2E5E5C8200095618 /* Haptics.swift */,
-                                DA4CA82D2E5E5C9D00095618 /* FlipDigit.swift */,
-                                DA4CA82F2E5E5CBA00095618 /* HomeView.swift */,
-                                DA4CA8312E5E5CEA00095618 /* HistoryView.swift */,
-                                DA4CA8332E5E5D0200095618 /* GoalsView.swift */,
-                                DA4CA8362E5E5D2B00095618 /* Info.plist */,
-                        );
-                        path = ProteinFlip;
-                        sourceTree = "<group>";
-                };
+               DA4CA7F62E5E5AAC00095618 /* ProteinFlip */ = {
+                       isa = PBXGroup;
+                       children = (
+                               DA4CA8272E5E5BEC00095618 /* ProteinFlipApp.swift */,
+                               DA4CA8292E5E5C5900095618 /* ProteinStore.swift */,
+                               DA4CA82B2E5E5C8200095618 /* Haptics.swift */,
+                               DA4CA82D2E5E5C9D00095618 /* FlipDigit.swift */,
+                               DA4CA82F2E5E5CBA00095618 /* HomeView.swift */,
+                               DA4CA8312E5E5CEA00095618 /* HistoryView.swift */,
+                               DA4CA8332E5E5D0200095618 /* GoalsView.swift */,
+                               DA4CA8362E5E5D2B00095618 /* Info.plist */,
+                       );
+                       path = ProteinFlip;
+                       sourceTree = "<group>";
+               };
+               7D7170F94D6648B9848EFF39 /* ProteinFlipUITests */ = {
+                       isa = PBXGroup;
+                       children = (
+                               4D6D19CEB30E4F8F80AF286B /* ProteinFlipUITests.swift */,
+                       );
+                       path = ProteinFlipUITests;
+                       sourceTree = "<group>";
+               };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -251,13 +262,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA4CA8102E5E5AB000095618 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+DA4CA8102E5E5AB000095618 /* Sources */ = {
+isa = PBXSourcesBuildPhase;
+buildActionMask = 2147483647;
+files = (
+7563C0D89EB64A259F334B40 /* ProteinFlipUITests.swift in Sources */,
+);
+runOnlyForDeploymentPostprocessing = 0;
+};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
