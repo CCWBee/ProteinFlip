@@ -8,8 +8,8 @@ struct ProteinFlipApp: App {
         WindowGroup {
             HomeView()
                 .onAppear { store.handleRolloverIfNeeded() }
+                .environmentObject(store)
         }
-        .environmentObject(store)
     }
 }
 
