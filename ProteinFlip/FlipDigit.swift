@@ -51,6 +51,7 @@ struct FlipDigit: View {
                         .foregroundStyle(.white)
                         .baselineOffset(2)
                         .frame(height: half)
+                        .clipped()
                 }
                 .frame(height: half)
                 .overlay(
@@ -74,6 +75,7 @@ struct FlipDigit: View {
                         .foregroundStyle(.white.opacity(0.95))
                         .baselineOffset(-2)
                         .frame(height: half)
+                        .clipped()
                 }
                 .frame(height: half)
                 .rotation3DEffect(
