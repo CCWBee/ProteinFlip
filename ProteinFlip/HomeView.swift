@@ -67,8 +67,8 @@ struct HomeView: View {
                     }
                 }
             }
-            .sheet(isPresented: $showHistory) { HistoryView() }
-            .sheet(isPresented: $showGoals) { GoalsView() }
+            .sheet(isPresented: $showHistory) { HistoryView().environmentObject(store) }
+            .sheet(isPresented: $showGoals) { GoalsView().environmentObject(store) }
             .onAppear {
                 displayValue = store.todayGrams
                 Haptics.prepare()
