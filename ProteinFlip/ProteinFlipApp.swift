@@ -7,9 +7,9 @@ struct ProteinFlipApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView()
-                .environmentObject(store)
                 .onAppear { store.handleRolloverIfNeeded() }
         }
+        .environmentObject(store)
     }
 }
 
