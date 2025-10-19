@@ -8,6 +8,7 @@ struct HomeView: View {
     @State private var showHistory = false
     @State private var showGoals = false
     @State private var lastAddition: Int?
+    @AppStorage("darkModeEnabled") private var darkModeEnabled = false
 
     var body: some View {
         NavigationStack {
@@ -64,6 +65,9 @@ struct HomeView: View {
                         Button { showGoals = true } label: {
                             Label("Goals", systemImage: "target")
                         }
+                        Toggle(isOn: $darkModeEnabled) {
+                            Label("Dark Mode", systemImage: "moon.fill")
+                        }
                     } label: {
                         Image(systemName: "line.3.horizontal")
                     }
@@ -71,6 +75,7 @@ struct HomeView: View {
             }
             .sheet(isPresented: $showHistory) { HistoryView().environmentObject(store) }
             .sheet(isPresented: $showGoals) { GoalsView().environmentObject(store) }
+            .preferredColorScheme(darkModeEnabled ? .dark : nil)
             .onAppear {
                 displayValue = store.todayGrams
                 Haptics.prepare()
@@ -115,7 +120,7 @@ struct HomeView: View {
 
     private var quickAdds: some View {
         HStack(spacing: 8) {
-            ForEach([20, 30, 40], id: \.self) { v in
+            ForEach([20, 40, 50], id: \.self) { v in
                 Button("+\(v) g") { addQuick(v) }
                     .buttonStyle(.bordered)
             }
