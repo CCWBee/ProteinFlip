@@ -46,12 +46,7 @@ struct FlipDigit: View {
                 // Top flap
                 ZStack {
                     Rectangle().fill(Color(white: 0.16))
-                    Text(String(topDigit))
-                        .font(.system(size: fontSize, weight: .semibold, design: .monospaced))
-                        .foregroundStyle(.white)
-                        .baselineOffset(2)
-                        .frame(height: half)
-                        .clipped()
+                    digitLayer(for: topDigit, clip: .top, color: .white)
                 }
                 .frame(height: half)
                 .overlay(
@@ -70,12 +65,7 @@ struct FlipDigit: View {
                 // Bottom flap
                 ZStack {
                     Rectangle().fill(Color(white: 0.14))
-                    Text(String(bottomDigit))
-                        .font(.system(size: fontSize, weight: .semibold, design: .monospaced))
-                        .foregroundStyle(.white.opacity(0.95))
-                        .baselineOffset(-2)
-                        .frame(height: half)
-                        .clipped()
+                    digitLayer(for: bottomDigit, clip: .bottom, color: .white.opacity(0.95))
                 }
                 .frame(height: half)
                 .rotation3DEffect(
@@ -107,6 +97,32 @@ struct FlipDigit: View {
                 }
             }
         }
+    }
+}
+
+private extension FlipDigit {
+    /// Defines which half of the flap should be visible.
+    enum ClipHalf {
+        case top
+        case bottom
+    }
+
+    /// Creates the text for a flap, masking it so only the requested half is visible.
+    func digitLayer(for character: Character, clip: ClipHalf, color: Color) -> some View {
+        let height = fontSize * 1.2
+        let half = height / 2
+        let alignment: Alignment = clip == .top ? .top : .bottom
+
+        return Text(String(character))
+            .font(.system(size: fontSize, weight: .semibold, design: .monospaced))
+            .foregroundStyle(color)
+            .fixedSize()
+            .frame(width: width, height: height)
+            .mask(alignment: alignment) {
+                Rectangle()
+                    .frame(height: half)
+            }
+            .frame(width: width, height: half, alignment: alignment)
     }
 }
 
